@@ -1,0 +1,17 @@
+.header {
+  padding-top: 45px;
+  display: flex;
+  width: calc(100% - 400px);
+  min-height: 74px;
+  margin: 0 auto 40px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    width: calc(100%);
+    padding-top: 28px;
+    min-height: 56px;
+    margin-bottom: 42px;
+  }
+}

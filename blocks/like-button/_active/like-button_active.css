@@ -1,0 +1,9 @@
+.like-button_active {
+  width: 22px;
+  height: 19px;
+  border: 0;
+  background: #000000;
+  cursor: pointer;
+  background-image: url(../../../images/likeActiveButton.svg);
+  background-size: 22px 19px;
+}
