@@ -6,6 +6,13 @@
   margin: 0 auto;
   border: 0;
   cursor: pointer;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
 }
 
 .popup__button:hover {
@@ -16,5 +23,7 @@
   .popup__button {
     width: 238px;
     height: 46px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

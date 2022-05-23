@@ -1,5 +1,5 @@
 .profile__title {
-  width: 294px;
+  max-width: 294px;
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -7,6 +7,7 @@
   line-height: 48px;
   color: #ffffff;
   margin: 0;
+  margin-top: 20px;
   display: flex;
   margin-right: 18px;
   text-overflow: ellipsis;
@@ -20,6 +21,7 @@
     font-size: 27px;
     line-height: 33px;
     text-align: center;
+    margin: 0;
     margin-right: 10px;
   }
 }
