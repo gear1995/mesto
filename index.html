@@ -64,32 +64,29 @@
             name="name"
             type="text"
             placeholder="Название"
-            class="popup__input popup__input_place_field-name"
+            class="popup__input popup__input_place_field-image-name"
           />
           <input
-            name="description"
+            name="link"
             type="text"
             placeholder="Ссылка на картинку"
-            class="popup__input popup__input_place_field-description"
+            class="popup__input popup__input_place_field-link"
           />
           <button type="submit" class="popup__button">Создать</button>
         </form>
       </div>
     </div>
     <div class="popup popup_type_image">
-      <div class="popup__container-image">
+      <div class="popup__container popup__container-image">
         <button type="button" class="popup__close"></button>
-        <img
-          src="./images/karachaevsk.png"
-          alt="Фотография старго здания."
-          class="element__image"
-        />
-        <p class="popup__subtitle">Новое место</p>
+        <img src="#" alt="" class="popup__element-image" />
+        <p class="popup__subtitle"></p>
       </div>
     </div>
     <template class="card-template">
       <div class="element">
-        <img src="#" alt="Фотография старго здания." class="element__image" />
+        <button type="button" class="popup__delete"></button>
+        <img src="#" alt="" class="element__image" />
         <div class="element__container">
           <h2 class="element__title"></h2>
           <button type="button" class="like-button"></button>
