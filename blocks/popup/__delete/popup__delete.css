@@ -1,0 +1,17 @@
+.popup__delete {
+  width: 18px;
+  height: 19px;
+  background-image: url(../../../images/Trash.svg);
+  background-size: 18px 19px;
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+
+.popup__delete:hover {
+  opacity: 0.6;
+}
