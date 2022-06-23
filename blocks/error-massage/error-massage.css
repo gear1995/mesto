@@ -1,0 +1,18 @@
+.error-massage {
+  color: red;
+  opacity: 1;
+  transition: 0.3s;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  max-width: 358px;
+  padding: 0;
+  display: block;
+  height: 30px;
+}
+
+.error-massage:last-of-type {
+  margin-bottom: 13px;
+}

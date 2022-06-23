@@ -38,20 +38,38 @@
       <div class="popup__container">
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="popup__form" class="popup__form">
+        <form id="profile" name="popup__form" class="popup__form" novalidate>
           <input
+            required
+            minlength="2"
+            maxlength="40"
             name="name"
             type="text"
             placeholder=""
             class="popup__input popup__input_place_field-name"
+            id="name"
           />
+          <span
+            id="error-name"
+            class="error-massage error-message__hidden"
+          ></span>
           <input
+            required
+            minlength="2"
+            maxlength="200"
             name="description"
             type="text"
             placeholder=""
             class="popup__input popup__input_place_field-description"
+            id="description"
           />
-          <button type="submit" class="popup__button">Сохранить</button>
+          <span
+            id="error-description"
+            class="error-massage error-message__hidden"
+          ></span>
+          <button id="save" type="submit" class="popup__button">
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
@@ -59,20 +77,41 @@
       <div class="popup__container">
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="popup__form" class="popup__form popup__form-adding">
+        <form
+          id="adding"
+          name="popup__form"
+          class="popup__form popup__form-adding"
+          novalidate
+        >
           <input
             name="name"
             type="text"
             placeholder="Название"
             class="popup__input popup__input_place_field-image-name"
+            id="title"
+            minlength="2"
+            maxlength="30"
+            required
           />
+          <span
+            id="error-title"
+            class="error-massage error-message__hidden"
+          ></span>
           <input
             name="link"
-            type="text"
+            type="url"
             placeholder="Ссылка на картинку"
             class="popup__input popup__input_place_field-link"
+            id="link"
+            required
           />
-          <button type="submit" class="popup__button">Создать</button>
+          <span
+            id="error-link"
+            class="error-massage error-message__hidden"
+          ></span>
+          <button id="create" type="submit" class="popup__button">
+            Создать
+          </button>
         </form>
       </div>
     </div>
@@ -94,5 +133,6 @@
       </div>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

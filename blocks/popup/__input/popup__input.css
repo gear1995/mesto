@@ -1,6 +1,5 @@
 .popup__input {
   font-family: "Inter", Arial, sans-serif;
-  margin-bottom: 30px;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-style: normal;
@@ -10,14 +9,17 @@
   padding-bottom: 13px;
   color: #000000;
   outline: none;
+  margin-bottom: 5px;
 }
 
-.popup__input:last-of-type {
-  margin-bottom: 48px;
-}
-
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .popup__input:last-of-type {
-    margin-bottom: 45px;
+    margin-bottom: 15px;
   }
+} */
+
+/* .popup__input:invalid {
+  border-bottom: 1px solid red;
+  margin-bottom: 5px;
 }
+ */

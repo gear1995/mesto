@@ -51,19 +51,35 @@ const cardsElements = document.querySelector(".elements");
 const formElementImage = popupAdding.querySelector(".popup__form");
 const image = document.querySelector(".popup__element-image");
 const popupSubtitle = document.querySelector(".popup__subtitle");
+const overlay = document.querySelector("#overlay-popup");
 
 function openPopup(element) {
   element.classList.add("popup_opened");
+  document.addEventListener("keydown", keyHandler);
 }
+
+const keyHandler = (evt) => {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
+  }
+};
 
 function closePopup(element) {
   element.classList.remove("popup_opened");
+  document.removeEventListener("keydown", keyHandler);
 }
 
 popups.forEach((popup) => {
   const closeButton = popup.querySelector(".popup__close");
   closeButton.addEventListener("click", function () {
     closePopup(popup);
+  });
+
+  popup.addEventListener("click", function (event) {
+    if (event.target.classList.contains("popup")) {
+      closePopup(event.target);
+    }
   });
 });
 
