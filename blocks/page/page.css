@@ -9,4 +9,5 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   font-family: "Inter", Arial, sans-serif;
+  position: relative;
 }
