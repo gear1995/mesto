@@ -29,24 +29,23 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const disableButton = (buttonElement, buttonDisabled) => {
-  buttonElement.classList.add(buttonDisabled);
+const disableButton = (buttonElement, settings) => {
   buttonElement.disabled = true;
+  buttonElement.classList.add(settings.inactiveButtonClass);
 };
-const enableButton = (buttonElement, buttonDisabled) => {
-  buttonElement.classList.remove(buttonDisabled);
+const enableButton = (buttonElement, settings) => {
   buttonElement.disabled = false;
+  buttonElement.classList.remove(settings.inactiveButtonClass);
 };
 
 const toggleButtonState = (inputList, buttonElement, settings) => {
-  const buttonDisabled = document.querySelector(settings.inactiveButtonClass);
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    disableButton(buttonElement, buttonDisabled);
+    disableButton(buttonElement, settings);
   } else {
     // иначе сделай кнопку активной
-    enableButton(buttonElement, buttonDisabled);
+    enableButton(buttonElement, settings);
   }
 };
 

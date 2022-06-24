@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 const editButton = document.querySelector(".profile__edit-button");
 const popupProfile = document.querySelector(".popup_type_profile");
 const popups = document.querySelectorAll(".popup");
@@ -38,8 +11,7 @@ const profileSubtitle = document.querySelector(".profile__subtitle");
 const descriptionFieldElement = document.querySelector(
   ".popup__input_place_field-description"
 );
-const formElement = document.querySelector(".popup__form");
-const imageButton = document.querySelector(".element__image");
+const formElementProfile = popupProfile.querySelector("#profile");
 const popupImage = document.querySelector(".popup_type_image");
 const imageName = document.querySelector(
   ".popup__input_place_field-image-name"
@@ -51,7 +23,7 @@ const cardsElements = document.querySelector(".elements");
 const formElementImage = popupAdding.querySelector(".popup__form");
 const image = document.querySelector(".popup__element-image");
 const popupSubtitle = document.querySelector(".popup__subtitle");
-const overlay = document.querySelector("#overlay-popup");
+const submitButtonSelector = document.querySelector("#create");
 
 function openPopup(element) {
   element.classList.add("popup_opened");
@@ -93,7 +65,7 @@ addButton.addEventListener("click", function () {
   openPopup(popupAdding);
 });
 
-formElement.addEventListener("submit", function (e) {
+formElementProfile.addEventListener("submit", function (e) {
   e.preventDefault();
   profileTitle.textContent = nameFieldElement.value;
   profileSubtitle.textContent = descriptionFieldElement.value;
@@ -121,12 +93,13 @@ function handleOpenPopupImage(e) {
   popupSubtitle.textContent = titleElement.textContent;
   openPopup(popupImage);
 }
-
 function createCard(link, name) {
   const cardElement = cardsTemplateElement.content.cloneNode(true);
   cardElement.querySelector(".element__image").src = link;
   cardElement.querySelector(".element__image").alt = name;
   cardElement.querySelector(".element__title").textContent = name;
+  submitButtonSelector.disabled = true;
+  submitButtonSelector.classList.add("popup__button_disabled");
   addCardListeners(cardElement);
   return cardElement;
 }
