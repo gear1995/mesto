@@ -98,8 +98,7 @@ function createCard(link, name) {
   cardElement.querySelector(".element__image").src = link;
   cardElement.querySelector(".element__image").alt = name;
   cardElement.querySelector(".element__title").textContent = name;
-  submitButtonSelector.disabled = true;
-  submitButtonSelector.classList.add("popup__button_disabled");
+
   addCardListeners(cardElement);
   return cardElement;
 }
@@ -130,4 +129,6 @@ formElementImage.addEventListener("submit", function (e) {
   addСard(imageLink.value, imageName.value);
   formAdding.reset();
   closePopup(popupAdding);
+  submitButtonSelector.disabled = true;
+  submitButtonSelector.classList.add("popup__button_disabled");
 });
