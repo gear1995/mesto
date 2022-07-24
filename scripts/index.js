@@ -67,9 +67,8 @@ const imageName = document.querySelector(
   ".popup__input_place_field-image-name"
 );
 const imageLink = document.querySelector(".popup__input_place_field-link");
-const formAdding = document.querySelector(".popup__form-adding");
-const submitButtonSelector = document.querySelector("#create");
-const formList = Array.from(document.querySelectorAll(settings.formSelector));
+const popupFormAdding = document.querySelector(".popup__form-adding");
+const popupFormProfile = document.querySelector(".popup_type_profile");
 
 function handleOpenPopupImage(name, link) {
   image.setAttribute("src", link);
@@ -80,27 +79,36 @@ function handleOpenPopupImage(name, link) {
 
 function createCard(name, link, templateSelector) {
   const card = new Card(name, link, templateSelector, handleOpenPopupImage);
-  card.render(cardsElements);
-  //можно выделить отдельную функциональность для добавления карточки
+  cardsElements.prepend(card.render());
 }
-
-formElementImage.addEventListener("submit", function (e) {
-  e.preventDefault();
-  createCard(imageName.value, imageLink.value, templateSelector);
-  formAdding.reset();
-  closePopup(popupAdding);
-  submitButtonSelector.disabled = true;
-  submitButtonSelector.classList.add("popup__button_disabled");
-});
 
 initialCards.forEach((item) => {
   createCard(item.name, item.link, templateSelector);
 });
 
-formList.forEach((formElement) => {
-  const form = new FormValidator(settings, formElement);
-  form.enableValidation();
-  form.disableSubmitButton();
+const formAdd = new FormValidator(settings, popupFormAdding);
+formAdd.enableValidation();
+
+const formProfile = new FormValidator(settings, popupFormProfile);
+formProfile.enableValidation();
+
+formElementImage.addEventListener("submit", function (e) {
+  e.preventDefault();
+  createCard(imageName.value, imageLink.value, templateSelector);
+  formAdd.disableSubmitButton();
+
+  formAdd.resetValidation();
+  closePopup(popupAdding);
+});
+
+formElementProfile.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  profileTitle.textContent = nameFieldElement.value;
+  profileSubtitle.textContent = descriptionFieldElement.value;
+  formProfile.resetValidation();
+  formProfile.disableSubmitButton();
+  closePopup(popupProfile);
 });
 
 function openPopup(element) {
@@ -134,11 +142,4 @@ editButton.addEventListener("click", function () {
 
 addButton.addEventListener("click", function () {
   openPopup(popupAdding);
-});
-
-formElementProfile.addEventListener("submit", function (e) {
-  e.preventDefault();
-  profileTitle.textContent = nameFieldElement.value;
-  profileSubtitle.textContent = descriptionFieldElement.value;
-  closePopup(popupProfile);
 });

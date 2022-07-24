@@ -13,18 +13,17 @@ export default class Card {
   }
 
   _addEventListeners() {
-    this._view
-      .querySelector(".popup__delete")
-      .addEventListener("click", this._handleDelete);
-    this._view
-      .querySelector(".like-button")
-      .addEventListener("click", this._handleLike);
+    this._cardDelete = this._view.querySelector(".popup__delete");
+    this._likeButton = this._view.querySelector(".like-button");
+    this._elementImage = this._view.querySelector(".element__image");
 
-    this._view
-      .querySelector(".element__image")
-      .addEventListener("click", () => {
-        this._handleOpenPopupImage(this._name, this._link);
-      });
+    this._cardDelete.addEventListener("click", this._handleDelete);
+
+    this._likeButton.addEventListener("click", this._handleLike);
+
+    this._elementImage.addEventListener("click", () => {
+      this._handleOpenPopupImage(this._name, this._link);
+    });
   }
 
   _handleDelete = (e) => {
@@ -34,21 +33,19 @@ export default class Card {
 
   _handleLike = (e) => {
     e.preventDefault();
-    this._view
-      .querySelector(".like-button")
-      .classList.toggle("like-button_active");
+    this._likeButton.classList.toggle("like-button_active");
   };
 
-  render(cardsElements) {
+  render() {
     this._view = this._getTemplate();
-    const elementTitle = this._view.querySelector(".element__title");
-    const elementImage = this._view.querySelector(".element__image");
+    this._elementTitle = this._view.querySelector(".element__title");
+    this._elementImage = this._view.querySelector(".element__image");
 
-    elementTitle.textContent = this._name;
-    elementImage.alt = this._name;
-    elementImage.src = this._link;
+    this._elementTitle.textContent = this._name;
+    this._elementImage.alt = this._name;
+    this._elementImage.src = this._link;
 
     this._addEventListeners();
-    cardsElements.prepend(this._view);
+    return this._view;
   }
 }
