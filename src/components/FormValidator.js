@@ -22,11 +22,6 @@ export default class FormValidator {
   };
 
   _checkInputValidity = (inputElement) => {
-    this._errorElement = this._formElement.querySelector(
-      `#error-${inputElement.id}`
-    );
-    console.log(this._errorElement);
-
     if (!inputElement.validity.valid) {
       this._showInputError(
         inputElement,
@@ -66,9 +61,6 @@ export default class FormValidator {
     this._toggleButtonState();
 
     this._inputList.forEach((inputElement) => {
-      this._errorElement = this._formElement.querySelector(
-        `#error-${inputElement.id}`
-      );
       this._hideInputError(inputElement);
     });
   }
@@ -79,6 +71,9 @@ export default class FormValidator {
     );
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
+      this._errorElement = this._formElement.querySelector(
+        `#error-${inputElement.id}`
+      );
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
