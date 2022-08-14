@@ -1,12 +1,13 @@
 export default class Card {
-  constructor(name, link, templateSelector, handleOpenPopupImage) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
-    this._handleOpenPopupImage = handleOpenPopupImage;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
+    console.log(this._templateSelector);
     const cardElement =
       this._templateSelector.content.cloneNode(true).children[0];
     return cardElement;
@@ -22,7 +23,7 @@ export default class Card {
     this._likeButton.addEventListener("click", this._handleLike);
 
     this._elementImage.addEventListener("click", () => {
-      this._handleOpenPopupImage(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
