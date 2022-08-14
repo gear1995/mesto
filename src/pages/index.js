@@ -1,10 +1,10 @@
 import "./../pages/index.css";
-import Card from "./card.js";
-import FormValidator from "./FormValidator.js";
-import PopupWithImage from "./PopupWithImage.js";
-import Section from "./Section.js";
-import UserInfo from "./UserInfo.js";
-import PopupWithForm from "./PopupWithForm.js";
+import Card from "../components/card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import {
   initialCards,
   settings,
@@ -16,7 +16,7 @@ import {
   descriptionFieldElement,
   popupFormAdding,
   popupFormProfile,
-} from "./utils.js";
+} from "../components/utils.js";
 
 const popupImage = new PopupWithImage(".popup_type_image");
 popupImage.setEventListeners();
@@ -70,13 +70,13 @@ editButton.addEventListener("click", function () {
   const userProfile = userInfoProfile.getUserInfo();
   nameFieldElement.value = userProfile.name;
   descriptionFieldElement.value = userProfile.description;
-  formProfile.disableSubmitButton();
-  /* formProfile.resetValidation(); */
+  formProfile.resetValidation();
+
   popupTypeProfile.open();
 });
 
 addButton.addEventListener("click", function () {
-  formAdd.disableSubmitButton();
-  /* formAdd.resetValidation(); */
+  popupFormAdding.reset();
+  formAdd.resetValidation();
   popupTypeAdding.open();
 });

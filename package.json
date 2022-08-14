@@ -1,7 +1,7 @@
 {
   "name": "mesto",
   "version": "0.0.1",
-  "description": "Проектная работа №7 \"Mesto\"",
+  "description": "Проектная работа №8 \"Mesto\"",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",

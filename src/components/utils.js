@@ -36,7 +36,7 @@ export const userData = {
   description: ".profile__subtitle",
 };
 
-export const templateSelector = document.querySelector(".card-template");
+export const templateSelector = ".card-template";
 export const editButton = document.querySelector(".profile__edit-button");
 export const addButton = document.querySelector(".profile__add-button");
 export const nameFieldElement = document.querySelector(
