@@ -6,7 +6,7 @@
   background-color: white;
   background-image: url(../../images/likeButton.svg);
   background-size: 22px 19px;
-  margin-right: 30px;
+  margin-bottom: 3px;
 }
 
 .like-button:hover {

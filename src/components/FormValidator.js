@@ -17,7 +17,6 @@ export default class FormValidator {
 
   _hideInputError = (inputElement) => {
     inputElement.classList.remove(this._inputErrorClass);
-    console.log(this._errorElement);
     this._errorElement.textContent = "";
   };
 

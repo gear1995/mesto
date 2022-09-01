@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--    <link rel="stylesheet" href="./pages/index.css" /> -->
     <title>Место</title>
   </head>
   <body class="page">
@@ -23,6 +22,7 @@
           alt="Жак-Ив Кусто"
           class="profile__image"
         />
+        <button class="avatar-edit"></button>
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -114,16 +114,52 @@
       </div>
     </div>
 
+    <div class="popup popup_type_confirm">
+      <div class="popup__container">
+        <button type="button" class="popup__close"></button>
+        <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+        <button id="confirm" type="submit" class="popup__button">Да</button>
+      </div>
+    </div>
+
+    <div class="popup popup_type_update-avatar">
+      <div class="popup__container">
+        <button type="button" class="popup__close"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          id="update-avatar"
+          name="popup__form"
+          class="popup__form popup__form-type_update-avatar"
+          novalidate
+        >
+          <input
+            name="link"
+            type="url"
+            placeholder="Ссылка на картинку"
+            class="popup__input popup__input_place_field-link"
+            id="link"
+            required
+          />
+          <span id="error-link" class="error-massage"></span>
+          <button id="update-avatar" type="submit" class="popup__button">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+
     <template class="card-template">
       <div class="element">
         <button type="button" class="popup__delete"></button>
         <img src="#" alt="" class="element__image" />
         <div class="element__container">
           <h2 class="element__title"></h2>
-          <button type="button" class="like-button"></button>
+          <div class="like-container">
+            <button type="button" class="like-button"></button>
+            <div class="like-container__counter">0</div>
+          </div>
         </div>
       </div>
     </template>
-    <!-- <script src="./scripts/index.js" type="module"></script> -->
   </body>
 </html>
