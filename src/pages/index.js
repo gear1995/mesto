@@ -11,7 +11,6 @@ import {
   popupFormAvatar,
   avatarEditButton,
   settings,
-  userData,
   templateSelector,
   editButton,
   addButton,
@@ -43,7 +42,6 @@ Promise.all([api.getUserInfo(), api.getCards()])
     userInfoProfile.setUserInfo(userinfo);
     cards.reverse();
     insertCard.renderItems(cards);
-    /* userInfoProfile.setUserAvatar(userinfo); */
   })
   .catch((error) => {
     console.log(error);
@@ -145,7 +143,6 @@ addButton.addEventListener("click", function () {
 
 const popupDelete = new PopupWithConfirm(".popup_type_confirm", {
   handleSubmit: (data) => {
-    console.log(data);
     api
       .deleteCard(data)
       .then(() => {
@@ -169,8 +166,7 @@ const createCardFromServer = (data) => {
 
       handleDelete: () => {
         popupDelete.open();
-        popupDelete.handleSubmitConfirm(() => {
-          alert(123);
+        popupDelete.handleSubmit(() => {
           api
             .deleteCard(card._id)
             .then(() => {

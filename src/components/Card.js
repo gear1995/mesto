@@ -6,7 +6,7 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
-    this._ownerId = data.owner._id;
+    this._ownId = data.owner._id;
     this._likes = data.likes;
     this._templateElement = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -42,7 +42,7 @@ export default class Card {
   };
 
   _hideDeleteButton() {
-    if (this._ownerId !== this._userId) {
+    if (this._ownId !== this._userId) {
       this._cardDelete.remove();
     }
   }
@@ -52,7 +52,11 @@ export default class Card {
   }
 
   _checkOwnLike() {
-    this.isLiked() ? this.addLike() : this.deleteLike();
+    if (this.isLiked() === true) {
+      this.addLike();
+    } else {
+      this.deleteLike();
+    }
   }
 
   setLike() {

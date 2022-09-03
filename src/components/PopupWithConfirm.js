@@ -4,25 +4,25 @@ export default class PopupWithConfirm extends Popup {
   constructor(popupSelector, { handleSubmit }) {
     super(popupSelector);
     this._handleSubmit = handleSubmit;
-    this._setEvt = this._setEvt.bind(this);
+    this._setEvent = this._setEvent.bind(this);
   }
 
-  handleSubmitConfirm(submitConfirm) {
-    this._handleSubmit = submitConfirm;
+  handleSubmit(submit) {
+    this._handleSubmit = submit;
   }
 
-  _setEvt(e) {
+  _setEvent(e) {
     e.preventDefault();
     this._handleSubmit();
   }
 
   open() {
     super.open();
-    this._popup.addEventListener("submit", this._setEvt);
+    this._formElement.addEventListener("submit", this._setEvent);
   }
 
   close() {
     super.close();
-    this._popup.removeEventListener("submit", this._setEvt);
+    this._formElement.removeEventListener("submit", this._setEvent);
   }
 }
