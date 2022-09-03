@@ -1,3 +1,3 @@
 module.exports = {
-  presets: [["@babel/preset-env", { corejs: "3.24.0", useBuiltIns: "entry" }]],
+  presets: [["@babel/preset-env", { corejs: "3.25.0", useBuiltIns: "entry" }]],
 };
