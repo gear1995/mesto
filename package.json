@@ -1,7 +1,7 @@
 {
   "name": "mesto",
   "version": "0.0.1",
-  "description": "Проектная работа №8 \"Mesto\"",
+  "description": "Проектная работа №9 \"Mesto\"",
   "main": "index.js",
   "scripts": {
     "predeploy": "npm run build",
@@ -35,6 +35,7 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
+    "@babel/core": "^7.18.13",
     "core-js": "^3.25.0"
   }
 }
