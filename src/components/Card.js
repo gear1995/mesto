@@ -8,7 +8,7 @@ export default class Card {
     this._id = data._id;
     this._ownId = data.owner._id;
     this._likes = data.likes;
-    this._templateElement = templateSelector;
+    this._template = templateSelector;
     this._handleCardClick = handleCardClick;
     this._userId = userId;
     this._handleDelete = handleDelete;
@@ -17,7 +17,7 @@ export default class Card {
 
   _getTemplate() {
     return document
-      .querySelector(this._templateElement)
+      .querySelector(this._template)
       .content.querySelector(".element")
       .cloneNode(true);
   }
