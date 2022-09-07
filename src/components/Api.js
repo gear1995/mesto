@@ -1,7 +1,7 @@
 export default class Api {
-  constructor(obj) {
-    this._host = obj.host;
-    this._token = obj.token;
+  constructor(options) {
+    this._host = options.host;
+    this._token = options.token;
     this._getJsonOrError = this._getJsonOrError.bind(this);
     this._getHeaders = this._getHeaders.bind(this);
   }

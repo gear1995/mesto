@@ -59,7 +59,8 @@ export default class Card {
     }
   }
 
-  setLike() {
+  setLike(data) {
+    this._likes = data;
     this._likeCounter.textContent = this._likes.length;
   }
 

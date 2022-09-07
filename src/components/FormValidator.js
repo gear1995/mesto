@@ -21,12 +21,11 @@ export default class FormValidator {
   };
 
   _checkInputValidity = (inputElement) => {
+    this._errorElement = this._formElement.querySelector(
+      `#error-${inputElement.id}`
+    );
     if (!inputElement.validity.valid) {
-      this._showInputError(
-        inputElement,
-        inputElement.validationMessage,
-        this._errorElement
-      );
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
       this._hideInputError(inputElement);
     }

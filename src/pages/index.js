@@ -18,13 +18,17 @@ import {
   descriptionFieldElement,
   popupFormAdding,
   popupFormProfile,
-} from "../components/utils.js";
-
-const formAdd = new FormValidator(settings, popupFormAdding);
-formAdd.enableValidation();
-
+  popupProfileSelector,
+  popupAvatarSelector,
+  popupAddingSelector,
+  popupDeleteSelector,
+  popupImageSelector,
+  containerSelector,
+} from "../utils/components.js";
 const formProfile = new FormValidator(settings, popupFormProfile);
 formProfile.enableValidation();
+const formAddCard = new FormValidator(settings, popupFormAdding);
+formAddCard.enableValidation();
 
 const formAvatar = new FormValidator(settings, popupFormAvatar);
 formAvatar.enableValidation();
@@ -37,24 +41,25 @@ const api = new Api({
 let userId = null;
 
 Promise.all([api.getUserInfo(), api.getCards()])
-  .then(([userinfo, cards]) => {
-    userId = userinfo._id;
-    userInfoProfile.setUserInfo(userinfo);
+  .then(([userInfo, cards]) => {
+    userId = userInfo._id;
+    userInfoProfile.setUserInfo(userInfo);
+    userInfoProfile.setUserAvatar(userInfo);
     cards.reverse();
-    insertCard.renderItems(cards);
+    cardsList.renderItems(cards);
   })
   .catch((error) => {
     console.log(error);
   });
 
-const insertCard = new Section(
+const cardsList = new Section(
   {
     items: [],
     renderer: (data) => {
-      insertCard.addItem(createCardFromServer(data));
+      cardsList.addItem(createCardFromServer(data));
     },
   },
-  ".elements"
+  containerSelector
 );
 
 const userInfoProfile = new UserInfo({
@@ -63,7 +68,7 @@ const userInfoProfile = new UserInfo({
   avatar: ".profile__image",
 });
 
-const popupTypeProfile = new PopupWithForm(".popup_type_profile", {
+const popupTypeProfile = new PopupWithForm(popupProfileSelector, {
   submitHandle: (info) => {
     popupTypeProfile.renderLoad(true);
     api
@@ -90,15 +95,14 @@ editButton.addEventListener("click", function () {
   popupTypeProfile.open();
 });
 
-const popupEditAvatar = new PopupWithForm(".popup_type_update-avatar", {
+const popupEditAvatar = new PopupWithForm(popupAvatarSelector, {
   submitHandle: (data) => {
     popupEditAvatar.renderLoad(true);
-    console.log(data);
     api
       .updateAvatar(data)
       .then((res) => {
         userInfoProfile.setUserAvatar(res);
-        formAvatar.close();
+        popupEditAvatar.close();
       })
       .catch((error) => {
         console.log(error);
@@ -115,14 +119,14 @@ avatarEditButton.addEventListener("click", () => {
   popupEditAvatar.open();
 });
 
-const popupTypeAdding = new PopupWithForm(".popup_type_adding", {
+const popupTypeAdding = new PopupWithForm(popupAddingSelector, {
   submitHandle: (info) => {
     popupTypeAdding.renderLoad(true);
     api
       .postCard(info)
       .then((info) => {
         const card = createCardFromServer(info);
-        insertCard.addItem(card);
+        cardsList.addItem(card);
         popupTypeAdding.close();
       })
       .catch((error) => {
@@ -137,11 +141,11 @@ popupTypeAdding.setEventListeners();
 
 addButton.addEventListener("click", function () {
   popupFormAdding.reset();
-  formAdd.resetValidation();
+  formAddCard.resetValidation();
   popupTypeAdding.open();
 });
 
-const popupDelete = new PopupWithConfirm(".popup_type_confirm", {
+const popupDelete = new PopupWithConfirm(popupDeleteSelector, {
   handleSubmit: (data) => {
     api
       .deleteCard(data)
@@ -183,9 +187,9 @@ const createCardFromServer = (data) => {
         if (card.isLiked()) {
           api
             .deleteLike(card._id)
-            .then(() => {
+            .then((data) => {
               card.deleteLike();
-              card.setLike();
+              card.setLike(data.likes);
             })
             .catch((error) => {
               console.log(error);
@@ -193,9 +197,9 @@ const createCardFromServer = (data) => {
         } else {
           api
             .setLike(card._id)
-            .then(() => {
+            .then((data) => {
               card.addLike();
-              card.setLike();
+              card.setLike(data.likes);
             })
             .catch((error) => {
               console.log(error);
@@ -208,5 +212,6 @@ const createCardFromServer = (data) => {
   const cardEl = card.render();
   return cardEl;
 };
-const popupImage = new PopupWithImage(".popup_type_image");
+
+const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
